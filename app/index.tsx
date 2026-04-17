@@ -1,9 +1,11 @@
-import { View, Button, Alert } from 'react-native';
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { NavBar } from "@/components/NavBar";
 
 export default function Home() {
   return (
-    <View className="flex-1 justify-center items-center bg-white dark:bg-black">
-      <Button title="Press Me" onPress={() => Alert.alert("Button Pressed")} />
-    </View>
+    <SafeAreaView className="flex-1 bg-background">
+      <NavBar />
+    </SafeAreaView>
   );
 }
