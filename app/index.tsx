@@ -1,11 +1,5 @@
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Redirect } from "expo-router";
 
-import { NavBar } from "@/components/NavBar";
-
-export default function Home() {
-  return (
-    <SafeAreaView className="flex-1 bg-background">
-      <NavBar />
-    </SafeAreaView>
-  );
+export default function Index() {
+  return <Redirect href="/home" />;
 }
