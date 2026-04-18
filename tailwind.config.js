@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Manrope_400Regular"],
+        serif: ["Newsreader_400Regular"],
         mono: ["monospace"],
       },
       colors: {

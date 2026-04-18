@@ -4,6 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { NavBar } from "@/components/NavBar";
 import { useFonts, Manrope_400Regular, Manrope_500Medium, Manrope_600SemiBold, Manrope_700Bold, Manrope_800ExtraBold } from "@expo-google-fonts/manrope";
+import { Newsreader_400Regular } from "@expo-google-fonts/newsreader";
 import "../global.css";
 
 export default function Layout() {
@@ -12,7 +13,8 @@ export default function Layout() {
     Manrope_500Medium,
     Manrope_600SemiBold,
     Manrope_700Bold,
-    Manrope_800ExtraBold
+    Manrope_800ExtraBold,
+    Newsreader_400Regular
   });
 
   if (!fontsLoaded) return null;
