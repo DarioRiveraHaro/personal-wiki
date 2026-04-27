@@ -1,11 +1,15 @@
-import { useState, useRef } from "react";
-import { Pressable, View, Modal, Animated, Dimensions } from "react-native";
+import { CreateDirectoryForm } from "@/components/CreateDirectoryForm";
 import { Plus } from "lucide-react-native";
-import { CreateDirectoryForm } from "./CreateDirectoryForm";
+import { useRef, useState } from "react";
+import { Animated, Dimensions, Modal, Pressable, View } from "react-native";
 
 const { height: screenHeight } = Dimensions.get("window");
 
-export function CreateDirectory() {
+interface Props {
+  onCreate: (name: string, description: string) => void;
+}
+
+export function CreateDirectory({ onCreate }: Props) {
   const [isModalVisible, setModalVisible] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(screenHeight)).current;
@@ -22,7 +26,7 @@ export function CreateDirectory() {
         toValue: 0,
         duration: 300,
         useNativeDriver: true,
-      })
+      }),
     ]).start();
   };
 
@@ -37,7 +41,7 @@ export function CreateDirectory() {
         toValue: screenHeight,
         duration: 250,
         useNativeDriver: true,
-      })
+      }),
     ]).start(() => {
       setModalVisible(false);
     });
@@ -45,7 +49,7 @@ export function CreateDirectory() {
 
   return (
     <>
-      <Pressable 
+      <Pressable
         className="w-[48%] bg-muted/20 rounded-3xl border-2 border-dashed border-border active:bg-muted/40 transition-colors overflow-hidden"
         style={{ aspectRatio: 1 }}
         onPress={openModal}
@@ -63,16 +67,22 @@ export function CreateDirectory() {
         transparent={true}
         onRequestClose={closeModal}
       >
-        <Animated.View 
+        <Animated.View
           className="flex-1 justify-end"
-          style={{ backgroundColor: 'rgba(0,0,0,0.5)', opacity: fadeAnim }}
+          style={{ backgroundColor: "rgba(0,0,0,0.5)", opacity: fadeAnim }}
         >
           <Pressable className="absolute inset-0" onPress={closeModal} />
-          <Animated.View 
+          <Animated.View
             className="h-[75%] bg-background rounded-t-3xl w-full pt-6 px-6 relative shadow-lg"
             style={{ transform: [{ translateY: slideAnim }] }}
           >
-            <CreateDirectoryForm onClose={closeModal} />
+            <CreateDirectoryForm 
+              onClose={closeModal} 
+              onSubmit={(name, description) => {
+                onCreate(name, description);
+                closeModal();
+              }} 
+            />
           </Animated.View>
         </Animated.View>
       </Modal>
