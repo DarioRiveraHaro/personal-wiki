@@ -31,8 +31,12 @@ export function NavBar() {
           return (
             <Pressable
               key={tab.id}
-              onPress={() => router.replace(tab.href as any)}
-              className={`items-center justify-center p-3 rounded-full transition-colors ${
+              onPress={() => {
+                if (!isActive) {
+                  router.replace(tab.href as any);
+                }
+              }}
+              className={`items-center justify-center p-3 rounded-full ${
                 isActive ? "bg-[#2F8476]" : "bg-transparent"
               }`}
             >
