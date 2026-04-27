@@ -53,6 +53,7 @@ export function CreateDirectory({ onCreate }: Props) {
         className="w-[48%] bg-muted/20 rounded-3xl border-2 border-dashed border-border active:bg-muted/40 transition-colors overflow-hidden"
         style={{ aspectRatio: 1 }}
         onPress={openModal}
+        unstable_pressDelay={100}
       >
         <View className="flex-1 w-full h-full items-center justify-center">
           <View className="bg-background w-16 h-16 rounded-full shadow-sm border border-border items-center justify-center">
@@ -76,12 +77,12 @@ export function CreateDirectory({ onCreate }: Props) {
             className="h-[75%] bg-background rounded-t-3xl w-full pt-6 px-6 relative shadow-lg"
             style={{ transform: [{ translateY: slideAnim }] }}
           >
-            <CreateDirectoryForm 
-              onClose={closeModal} 
+            <CreateDirectoryForm
+              onClose={closeModal}
               onSubmit={(name, description) => {
                 onCreate(name, description);
                 closeModal();
-              }} 
+              }}
             />
           </Animated.View>
         </Animated.View>

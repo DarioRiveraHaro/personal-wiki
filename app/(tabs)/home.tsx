@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CreateDirectory } from "@/components/CreateDirectory";
 import { DirectoryCard } from "@/components/DirectoryCard";
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
@@ -13,12 +13,12 @@ export default function Home() {
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="px-6 flex-row flex-wrap justify-between gap-y-4 pt-4">
+      <ScrollView contentContainerClassName="px-6 flex-row flex-wrap justify-between gap-y-4 pt-4 pb-24">
         {directories.map((dir) => (
           <DirectoryCard key={dir.id} name={dir.name} />
         ))}
         <CreateDirectory onCreate={handleCreateDirectory} />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

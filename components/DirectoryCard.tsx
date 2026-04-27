@@ -9,6 +9,7 @@ export function DirectoryCard({ name }: Props) {
     <Pressable
       className="w-[48%] bg-muted/20 rounded-3xl border border-border active:bg-muted/40 transition-colors overflow-hidden p-5"
       style={{ aspectRatio: 1 }}
+      unstable_pressDelay={100}
     >
       <View className="flex-1 w-full h-full justify-end items-start">
         <Text
