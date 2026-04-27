@@ -7,8 +7,6 @@ export default function Home() {
     <SafeAreaView className="flex-1 bg-background">
       <View className="px-6 flex-row flex-wrap justify-between gap-y-4 pt-4">
         <CreateDirectory />
-        <CreateDirectory />
-        <CreateDirectory />
       </View>
     </SafeAreaView>
   );
