@@ -7,10 +7,10 @@ import { useRouter } from "expo-router";
 
 export default function Home() {
   const router = useRouter();
-  const [directories, setDirectories] = useState<{ id: string; name: string; description: string }[]>([]);
+  const [directories, setDirectories] = useState<{ id: string; name: string; description: string; imageUri?: string }[]>([]);
 
-  const handleCreateDirectory = (name: string, description: string) => {
-    setDirectories(prev => [...prev, { id: Date.now().toString(), name, description }]);
+  const handleCreateDirectory = (name: string, description: string, imageUri?: string) => {
+    setDirectories(prev => [...prev, { id: Date.now().toString(), name, description, imageUri }]);
   };
 
   return (
@@ -20,7 +20,8 @@ export default function Home() {
           <DirectoryCard 
             key={dir.id} 
             name={dir.name} 
-            onPress={() => router.push({ pathname: '/directory/[id]', params: { id: dir.id, name: dir.name } })} 
+            imageUri={dir.imageUri}
+            onPress={() => router.push({ pathname: '/directory/[id]', params: { id: dir.id, name: dir.name, imageUri: dir.imageUri } })} 
           />
         ))}
         <CreateDirectory onCreate={handleCreateDirectory} />

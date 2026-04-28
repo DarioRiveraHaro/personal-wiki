@@ -6,7 +6,7 @@ import { Animated, Dimensions, Modal, Pressable, View } from "react-native";
 const { height: screenHeight } = Dimensions.get("window");
 
 interface Props {
-  onCreate: (name: string, description: string) => void;
+  onCreate: (name: string, description: string, imageUri?: string) => void;
 }
 
 export function CreateDirectory({ onCreate }: Props) {
@@ -79,8 +79,8 @@ export function CreateDirectory({ onCreate }: Props) {
           >
             <CreateDirectoryForm
               onClose={closeModal}
-              onSubmit={(name, description) => {
-                onCreate(name, description);
+              onSubmit={(name, description, imageUri) => {
+                onCreate(name, description, imageUri);
                 closeModal();
               }}
             />

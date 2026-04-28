@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeft } from "lucide-react-native";
 
 export default function DirectoryScreen() {
-  const { id, name } = useLocalSearchParams();
+  const { id, name, imageUri } = useLocalSearchParams();
   const router = useRouter();
 
   return (

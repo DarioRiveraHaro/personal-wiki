@@ -1,20 +1,36 @@
 import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View, Image } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { Image as ImageIcon } from "lucide-react-native";
 
 interface Props {
   onClose: () => void;
-  onSubmit: (name: string, description: string) => void;
+  onSubmit: (name: string, description: string, imageUri?: string) => void;
 }
 
 export function CreateDirectoryForm({ onClose, onSubmit }: Props) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUri, setImageUri] = useState<string | undefined>();
 
-  const isFormValid = name.trim().length > 0 && description.trim().length > 0;
+  const isFormValid = name.trim().length > 0;
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImageUri(result.assets[0].uri);
+    }
+  };
 
   const handleCreate = () => {
     if (isFormValid) {
-      onSubmit(name.trim(), description.trim());
+      onSubmit(name.trim(), description.trim(), imageUri);
     }
   };
   return (
@@ -51,6 +67,25 @@ export function CreateDirectoryForm({ onClose, onSubmit }: Props) {
             onChangeText={setDescription}
           />
         </View>
+
+        <View className="gap-y-2 mt-2">
+          <Text className="text-sm font-medium text-muted-foreground">
+            Background Image (Optional)
+          </Text>
+          <Pressable 
+            onPress={pickImage}
+            className="w-full h-32 bg-muted/20 border border-border rounded-xl border-dashed items-center justify-center overflow-hidden active:bg-muted/40"
+          >
+            {imageUri ? (
+              <Image source={{ uri: imageUri }} className="w-full h-full" resizeMode="cover" />
+            ) : (
+              <View className="items-center gap-y-2">
+                <ImageIcon size={24} className="text-muted-foreground" />
+                <Text className="text-sm text-muted-foreground">Tap to select image</Text>
+              </View>
+            )}
+          </Pressable>
+        </View>
       </View>
 
       <View className="mt-auto pb-8 flex-row justify-end gap-x-4">
@@ -62,7 +97,7 @@ export function CreateDirectoryForm({ onClose, onSubmit }: Props) {
         </Pressable>
         <Pressable
           onPress={handleCreate}
-          className={`px-6 py-3 rounded-xl bg-primary active:opacity-80 ${!isFormValid ? 'opacity-50' : ''}`}
+          className={`px-6 py-3 rounded-xl bg-primary active:opacity-80 ${!isFormValid ? "opacity-50" : ""}`}
           disabled={!isFormValid}
         >
           <Text className="text-primary-foreground font-medium">Create</Text>
