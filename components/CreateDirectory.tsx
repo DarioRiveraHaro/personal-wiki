@@ -1,4 +1,5 @@
 import { CreateDirectoryForm } from "@/components/CreateDirectoryForm";
+import { Icon } from "@/components/ui/icon";
 import { Plus } from "lucide-react-native";
 import { useRef, useState } from "react";
 import { Animated, Dimensions, Modal, Pressable, View } from "react-native";
@@ -50,14 +51,14 @@ export function CreateDirectory({ onCreate }: Props) {
   return (
     <>
       <Pressable
-        className="w-[48%] bg-muted/20 rounded-3xl border-2 border-dashed border-border active:bg-muted/40 transition-colors overflow-hidden"
+        className="w-[48%] bg-muted/10 dark:bg-muted/20 rounded-3xl border-2 border-dashed border-muted/40 dark:border-muted active:bg-muted/20 dark:active:bg-muted/40 transition-colors overflow-hidden"
         style={{ aspectRatio: 1 }}
         onPress={openModal}
         unstable_pressDelay={100}
       >
         <View className="flex-1 w-full h-full items-center justify-center">
-          <View className="bg-background w-16 h-16 rounded-full shadow-sm border border-border items-center justify-center">
-            <Plus size={32} className="text-foreground" />
+          <View className="bg-primary w-16 h-16 rounded-full shadow-sm border border-border items-center justify-center">
+            <Icon as={Plus} size={32} className="text-primary-foreground" />
           </View>
         </View>
       </Pressable>

@@ -74,7 +74,7 @@ export function CreateDirectoryForm({ onClose, onSubmit }: Props) {
           </Text>
           <Pressable 
             onPress={pickImage}
-            className="w-full h-32 bg-muted/20 border border-border rounded-xl border-dashed items-center justify-center overflow-hidden active:bg-muted/40"
+            className="w-full h-32 bg-muted/10 dark:bg-muted/20 border border-muted/40 dark:border-muted rounded-xl border-dashed items-center justify-center overflow-hidden active:bg-muted/20 dark:active:bg-muted/40"
           >
             {imageUri ? (
               <Image source={{ uri: imageUri }} className="w-full h-full" resizeMode="cover" />

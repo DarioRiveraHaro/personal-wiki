@@ -22,7 +22,7 @@ export function NavBar() {
       className="absolute bottom-0 w-full items-center pointer-events-auto"
       style={{ paddingBottom: Math.max(insets.bottom, 24) }}
     >
-      <View className="flex-row items-center justify-between dark:bg-zinc-900 bg-zinc-100 rounded-full px-6 py-3 shadow-2xl w-[90%] max-w-sm border dark:border-zinc-800 border-zinc-200">
+      <View className="flex-row items-center justify-between bg-card rounded-full px-6 py-3 shadow-2xl w-[90%] max-w-sm border border-border">
         {tabs.map((tab) => {
           // Check if current path matches tab href. Also map / and /index to home.
           const isActive =
@@ -37,15 +37,15 @@ export function NavBar() {
                 }
               }}
               className={`items-center justify-center p-3 rounded-full ${
-                isActive ? "bg-[#2F8476]" : "bg-transparent"
+                isActive ? "bg-primary" : "bg-transparent"
               }`}
             >
               <Icon
                 as={tab.icon}
                 className={
                   isActive
-                    ? "text-white dark:text-black"
-                    : "text-zinc-500 dark:text-zinc-400"
+                    ? "text-primary-foreground"
+                    : "text-muted-foreground"
                 }
                 size={22}
                 strokeWidth={isActive ? 2.5 : 2}
