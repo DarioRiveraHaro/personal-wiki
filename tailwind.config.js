@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         sans: ["Manrope_400Regular"],
         serif: ["Newsreader_400Regular"],
+        "serif-bold": ["Newsreader_700Bold"],
         mono: ["monospace"],
       },
       colors: {
